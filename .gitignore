@@ -1,0 +1,10 @@
+# COA's report files (ZIP, DOCX, PDF) and the text pulled from them stay out of git until
+# plan D3 (hosting copies) is decided. data/sources/coa-aar-<year>-files.csv records each
+# file's COA id, size and SHA-256 so anyone can fetch and check the same files.
+raw/
+
+__pycache__/
+*.pyc
+
+# Wrangler's local state (wrangler dev / deploy)
+.wrangler/

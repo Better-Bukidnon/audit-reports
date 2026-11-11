@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# Written by scripts/build-data.mjs from ../data on every build
+public/data/

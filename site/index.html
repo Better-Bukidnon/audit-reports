@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bukidnon Audit Reports · Better Bukidnon</title>
+    <meta
+      name="description"
+      content="Independent and unofficial. What the Commission on Audit found when it audited the Province of Bukidnon, its 2 cities and 20 municipalities: COA's verdict, its findings, and whether past recommendations were acted on, with every figure linked to the report."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#115e59" />
+    <script>
+      // Light or dark before the first paint: the reader's choice, else the device's setting.
+      // src/theme.ts does the same after load; keep the key ('ar-theme') in step.
+      (function () {
+        var t = null;
+        try {
+          t = localStorage.getItem('ar-theme');
+        } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+    <link rel="canonical" href="https://audit.betterbukidnon.org/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bukidnon Audit Reports" />
+    <meta property="og:title" content="Bukidnon Audit Reports · Better Bukidnon" />
+    <meta
+      property="og:description"
+      content="Independent and unofficial. COA's verdicts, findings and past recommendations for Bukidnon's 23 local governments, with every figure linked to the report."
+    />
+    <meta property="og:url" content="https://audit.betterbukidnon.org/" />
+    <meta property="og:locale" content="en_PH" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Same type roles as the other Better Bukidnon trackers: Figtree speaks, Inter works, mono labels. -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding: 24px; font-family: sans-serif">
+        This site needs JavaScript. The data is also available as CSV files in the project's repository.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

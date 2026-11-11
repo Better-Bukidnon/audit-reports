@@ -1,0 +1,18 @@
+// Cloudflare config for audit.betterbukidnon.org (Workers static assets, no Worker script).
+//
+// Workers:  npm run build && npx wrangler deploy
+//           Workers Builds: root directory "site", build "npm run build", deploy "npx wrangler deploy"
+// Pages:    npm run build && npx wrangler pages deploy dist --project-name audit-bukidnon
+//           Pages Git builds: root directory "site", build "npm run build", output "dist"
+//           Pages reads a Wrangler file only when it has "pages_build_output_dir", so it skips
+//           this one and needs nothing more: with no 404.html in dist it already serves
+//           index.html for every unknown path, which src/router.tsx needs.
+{
+	"name": "audit-bukidnon",
+	"compatibility_date": "2026-11-08",
+	"assets": {
+		"directory": "./dist",
+		// The site routes on the path (/compare, /<slug>), so every path that isn't a file gets index.html
+		"not_found_handling": "single-page-application"
+	}
+}

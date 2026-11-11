@@ -1,0 +1,139 @@
+/* =============================================================
+   Bukidnon Audit Reports (audit.betterbukidnon.org), on Tailwind.
+
+   A Better Bukidnon site in the same family as
+   budget.betterbukidnon.org and infra.betterbukidnon.org: white
+   paper, ink rules, a colored section band, mono labels, and the
+   same type roles ("Figtree speaks. Inter works. Mono labels.").
+   Its own accent, a ledger teal, sets it apart from the budget
+   portal's blue and the infrastructure tracker's orange.
+
+   The tokens below become Tailwind utilities: bg-paper, text-ink-3,
+   border-rule, text-accent, font-hero, max-w-page and so on.
+   Repeated class lists live in src/ui.ts.
+
+   Dark mode redefines the same tokens (below the theme), so
+   components never need a dark: class. Use a token, never a
+   fixed color, or it won't change with the theme.
+   ============================================================= */
+
+@import 'tailwindcss';
+
+/* dark: follows the site's theme switch, not only the device setting. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  /* Paper and ink (shared with the other trackers) */
+  --color-paper: #ffffff;
+  --color-paper-2: #f6f6f4;
+  --color-paper-3: #eeede9;
+  --color-rule: #d6d6d0;
+  --color-rule-soft: #e8e7e2;
+  --color-ink: #15130f;
+  --color-ink-2: #2e2b26;
+  --color-ink-3: #5f5b53;
+  --color-ink-mute: #8d887e;
+
+  /* Accent: this site's identity. If it changes, change favicon.svg and theme-color too. */
+  --color-accent: #0f766e;
+  --color-accent-deep: #115e59;
+  --color-accent-soft: #eaf6f4;
+  /* The nav band: stays dark teal in both themes, under white text. Matches theme-color. */
+  --color-band: #115e59;
+
+  /* Type roles */
+  --font-hero: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Layout */
+  --container-page: 1280px;
+}
+
+/* COA's verdicts. Always shown with their name, never by color alone. `static` because
+   components pick one through an inline --c (see verdictColor in components/bits.tsx),
+   which Tailwind can't see, and it otherwise drops variables no class uses. */
+@theme static {
+  --color-v-unmodified: #2f7d4f;
+  --color-v-qualified: #a5530a;
+  --color-v-adverse: #b8341f;
+  --color-v-disclaimer: #6b4fa0;
+}
+
+/* Dark mode: warm dark paper, light ink, a lighter teal and lighter verdict colors.
+   index.html sets data-theme before the first paint (the reader's choice, else the
+   device's setting) and src/theme.ts keeps it in step. Every text color here passes
+   WCAG AA (4.5:1) on paper, paper-2 and accent-soft, as the light ones do. "accent-deep"
+   is the hover and emphasis shade, so here it is lighter than accent, not darker. */
+:root {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-paper: #151412;
+  --color-paper-2: #1d1b18;
+  --color-paper-3: #26241f;
+  --color-rule: #45413a;
+  --color-rule-soft: #2e2b27;
+  --color-ink: #eeebe4;
+  --color-ink-2: #d5d1c8;
+  --color-ink-3: #a6a196;
+  --color-ink-mute: #827d73;
+  --color-accent: #3dbdae;
+  --color-accent-deep: #74d6c9;
+  --color-accent-soft: #112f2b;
+  --color-v-unmodified: #5fbf86;
+  --color-v-qualified: #e49a55;
+  --color-v-adverse: #f2846f;
+  --color-v-disclaimer: #ae97e8;
+}
+
+@layer base {
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+    font-feature-settings: 'ss01', 'cv11', 'tnum';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  a:hover {
+    color: var(--color-accent-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-hero);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+  }
+
+  p {
+    margin-bottom: 12px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
